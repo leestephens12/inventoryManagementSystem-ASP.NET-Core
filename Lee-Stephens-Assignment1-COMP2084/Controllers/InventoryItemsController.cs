@@ -48,7 +48,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         // GET: InventoryItems/Create
         public IActionResult Create()
         {
-            ViewData["ItemId"] = new SelectList(_context.Items, "ItemId", "Section");
+            ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section");
             return View();
         }
 
@@ -65,7 +65,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ItemId"] = new SelectList(_context.Items, "ItemId", "Section", inventoryItem.ItemId);
+            ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section", inventoryItem.ItemId);
             return View(inventoryItem);
         }
 
@@ -82,7 +82,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
             {
                 return NotFound();
             }
-            ViewData["ItemId"] = new SelectList(_context.Items, "ItemId", "Section", inventoryItem.ItemId);
+            ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section", inventoryItem.ItemId);
             return View(inventoryItem);
         }
 
@@ -118,7 +118,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ItemId"] = new SelectList(_context.Items, "ItemId", "Section", inventoryItem.ItemId);
+            ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section", inventoryItem.ItemId);
             return View(inventoryItem);
         }
 
