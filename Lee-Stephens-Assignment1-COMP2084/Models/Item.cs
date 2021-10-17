@@ -12,6 +12,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Models
 
         [Required]
         [MaxLength(25)]
+        [Display(Name = "Department")]
         public string Section { get; set; }
 
         [Required]
@@ -20,6 +21,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Models
 
         [Required]
         [MaxLength(35)]
+        [Display(Name = "Item Name")]
         public string ItemName { get; set; }
 
         //child refferences
