@@ -10,15 +10,18 @@ namespace Lee_Stephens_Assignment1_COMP2084.Models
     {
         public int ItemId { get; set; }
 
+        //Data annotations for validation
         [Required]
         [MaxLength(25)]
         [Display(Name = "Department")]
         public string Section { get; set; }
 
+        //Data annotations for validation
         [Required]
         [MaxLength(20)]
         public string Brand { get; set; }
 
+        //Data annotations for validation
         [Required]
         [MaxLength(35)]
         [Display(Name = "Item Name")]

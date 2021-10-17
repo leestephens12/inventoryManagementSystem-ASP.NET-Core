@@ -48,6 +48,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         // GET: InventoryItems/Create
         public IActionResult Create()
         {
+            ViewData["ItemName"] = new SelectList(_context.Items.OrderBy(c => c.ItemName), "ItemName", "ItemName");
             ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section");
             return View();
         }
@@ -57,7 +58,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("InventoryItemId,ItemName,Quantity,InStock,ItemId")] InventoryItem inventoryItem)
+        public async Task<IActionResult> Create([Bind("InventoryItemId,ItemName,Quantity,InStock,StoreLocation,ItemId")] InventoryItem inventoryItem)
         {
             if (ModelState.IsValid)
             {
@@ -65,6 +66,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ItemName"] = new SelectList(_context.Items.OrderBy(c => c.ItemName), "ItemName", "ItemName", inventoryItem.ItemName);
             ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section", inventoryItem.ItemId);
             return View(inventoryItem);
         }
@@ -82,6 +84,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
             {
                 return NotFound();
             }
+            ViewData["ItemName"] = new SelectList(_context.Items.OrderBy(c => c.ItemName), "ItemName", "ItemName", inventoryItem.ItemName);
             ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section", inventoryItem.ItemId);
             return View(inventoryItem);
         }
@@ -91,7 +94,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("InventoryItemId,ItemName,Quantity,InStock,ItemId")] InventoryItem inventoryItem)
+        public async Task<IActionResult> Edit(int id, [Bind("InventoryItemId,ItemName,Quantity,InStock,StoreLocation,ItemId")] InventoryItem inventoryItem)
         {
             if (id != inventoryItem.InventoryItemId)
             {
@@ -118,6 +121,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["ItemName"] = new SelectList(_context.Items.OrderBy(c => c.ItemName), "ItemName", "ItemName", inventoryItem.ItemName);
             ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section", inventoryItem.ItemId);
             return View(inventoryItem);
         }
