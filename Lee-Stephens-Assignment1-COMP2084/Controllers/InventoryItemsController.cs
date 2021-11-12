@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Lee_Stephens_Assignment1_COMP2084.Controllers
 {
 
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Roles = "Test")]
     public class InventoryItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
