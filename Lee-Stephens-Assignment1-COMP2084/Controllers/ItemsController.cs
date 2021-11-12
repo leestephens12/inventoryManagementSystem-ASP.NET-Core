@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Lee_Stephens_Assignment1_COMP2084.Data;
 using Lee_Stephens_Assignment1_COMP2084.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lee_Stephens_Assignment1_COMP2084.Controllers
 {
@@ -44,6 +45,8 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         }
 
         // GET: Items/Create
+        //Only Authorized users under role administrator can access
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             return View();
@@ -66,6 +69,8 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         }
 
         // GET: Items/Edit/5
+        //Only Authorized users under role administrator can access
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -117,6 +122,8 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         }
 
         // GET: Items/Delete/5
+        //Only Authorized users under role administrator can access
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

@@ -11,8 +11,6 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Lee_Stephens_Assignment1_COMP2084.Controllers
 {
-
-    [Authorize(Roles = "Test")]
     public class InventoryItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -49,6 +47,8 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         }
 
         // GET: InventoryItems/Create
+        //Only Authorized users under role administrator can access
+        [Authorize(Roles = "Administrator")]
         public IActionResult Create()
         {
             ViewData["ItemName"] = new SelectList(_context.Items.OrderBy(c => c.ItemName), "ItemName", "ItemName");
@@ -75,6 +75,8 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         }
 
         // GET: InventoryItems/Edit/5
+        //Only Authorized users under role administrator can access
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -130,6 +132,8 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         }
 
         // GET: InventoryItems/Delete/5
+        //Only Authorized users under role administrator can access
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
