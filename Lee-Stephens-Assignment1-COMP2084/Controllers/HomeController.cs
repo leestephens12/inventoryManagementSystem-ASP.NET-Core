@@ -1,4 +1,5 @@
 ﻿using Lee_Stephens_Assignment1_COMP2084.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;

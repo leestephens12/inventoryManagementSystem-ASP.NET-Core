@@ -34,6 +34,7 @@ namespace Lee_Stephens_Assignment1_COMP2084
 
             //dsiabling the confirmation email when account is created
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
         }

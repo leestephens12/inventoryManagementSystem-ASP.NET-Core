@@ -7,9 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Lee_Stephens_Assignment1_COMP2084.Data;
 using Lee_Stephens_Assignment1_COMP2084.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lee_Stephens_Assignment1_COMP2084.Controllers
 {
+
+    [Authorize(Roles = "Administrator")]
     public class InventoryItemsController : Controller
     {
         private readonly ApplicationDbContext _context;
