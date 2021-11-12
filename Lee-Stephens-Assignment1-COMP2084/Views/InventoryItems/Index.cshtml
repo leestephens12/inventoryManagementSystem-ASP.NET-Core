@@ -49,9 +49,17 @@
                 @Html.DisplayFor(modelItem => item.Item.Section)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.InventoryItemId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.InventoryItemId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.InventoryItemId">Delete</a>
+                <!--If the user is an admin it will offer the CRUD Functionality if not it will only offer the item details-->
+                @if (User.IsInRole("Administrator"))
+                {
+                    <a asp-action="Edit" asp-route-id="@item.InventoryItemId">Edit |</a>
+                    <a asp-action="Details" asp-route-id="@item.InventoryItemId">Details |</a>
+                    <a asp-action="Delete" asp-route-id="@item.InventoryItemId">Delete</a>
+                }
+                else
+                {
+                    <a asp-action="Details" asp-route-id="@item.InventoryItemId">Item Details</a>
+                }
             </td>
         </tr>
 }
