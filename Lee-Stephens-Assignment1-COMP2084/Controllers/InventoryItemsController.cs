@@ -24,7 +24,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         public async Task<IActionResult> Index()
         {
             var applicationDbContext = _context.InventoryItems.Include(i => i.Item);
-            return View(await applicationDbContext.ToListAsync());
+            return View("Index", await applicationDbContext.ToListAsync());
         }
 
         // GET: InventoryItems/Details/5
@@ -43,7 +43,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
                 return NotFound();
             }
 
-            return View(inventoryItem);
+            return View("Details", inventoryItem);
         }
 
         // GET: InventoryItems/Create
@@ -71,7 +71,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
             }
             ViewData["ItemName"] = new SelectList(_context.Items.OrderBy(c => c.ItemName), "ItemName", "ItemName", inventoryItem.ItemName);
             ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section", inventoryItem.ItemId);
-            return View(inventoryItem);
+            return View("Create", inventoryItem);
         }
 
         // GET: InventoryItems/Edit/5
@@ -91,7 +91,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
             }
             ViewData["ItemName"] = new SelectList(_context.Items.OrderBy(c => c.ItemName), "ItemName", "ItemName", inventoryItem.ItemName);
             ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section", inventoryItem.ItemId);
-            return View(inventoryItem);
+            return View("Edit", inventoryItem);
         }
 
         // POST: InventoryItems/Edit/5
@@ -128,7 +128,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
             }
             ViewData["ItemName"] = new SelectList(_context.Items.OrderBy(c => c.ItemName), "ItemName", "ItemName", inventoryItem.ItemName);
             ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section", inventoryItem.ItemId);
-            return View(inventoryItem);
+            return View("Edit", inventoryItem);
         }
 
         // GET: InventoryItems/Delete/5
@@ -149,7 +149,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
                 return NotFound();
             }
 
-            return View(inventoryItem);
+            return View("Delete", inventoryItem);
         }
 
         // POST: InventoryItems/Delete/5
