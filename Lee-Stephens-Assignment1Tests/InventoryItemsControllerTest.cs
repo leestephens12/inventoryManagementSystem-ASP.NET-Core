@@ -129,9 +129,9 @@ namespace Lee_Stephens_Assignment1Tests
         [TestMethod]
         public void CreateValidListReturned()
         {
-            var result = controller.ViewData["ItemId"];
-
-            Assert.IsNotNull(result);
+            var result = controller.Create();
+            var controllerResult = controller.ViewData["ItemId"];
+            Assert.IsNotNull(controllerResult);
         }
 
         [TestMethod]
@@ -271,6 +271,40 @@ namespace Lee_Stephens_Assignment1Tests
             var result = (ViewResult)controller.Edit(34, inventoryItems[0]).Result;
             Assert.AreEqual("Error404", result.ViewName);
         }
+
+        [TestMethod]
+        public void EditUpdateDatabaseId()
+        {
+            var inventoryItems = new InventoryItem
+            {
+                InventoryItemId = 002,
+                ItemName = "Samsung s21",
+                Quantity = 0,
+                InStock = false,
+                ItemId = 01,
+                StoreLocation = "1350 2nd ave east",
+                Item = new Item
+                {
+                    ItemId = 01,
+                    ItemName = "iPhone 13 128gb",
+                    Brand = "Apple",
+                    Section = "Cellphones"
+                }
+            };
+            var result = (ViewResult)controller.Edit(003, inventoryItems).Result;
+            Assert.AreEqual("Error404", result.ViewName);
+
+        }
+
+        [TestMethod]
+        public void EditInvalidModel()
+        {
+            var result = (ViewResult)controller.Edit(0).Result;
+            InventoryItem inventoryItem = (InventoryItem)result.Model;
+            Assert.AreNotEqual(_context.InventoryItems.FindAsync(0), inventoryItem);
+        }
+
+
 
         #endregion
         #region Delete
