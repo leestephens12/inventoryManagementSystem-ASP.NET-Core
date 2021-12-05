@@ -37,11 +37,26 @@ namespace Lee_Stephens_Assignment1Tests
 
             inventoryItems.Add(new InventoryItem
             {
-                InventoryItemId = 002, ItemName = "Samsung s21", Quantity = 0, InStock = false, ItemId = 01
+                InventoryItemId = 002,
+                ItemName = "Samsung s21",
+                Quantity = 0,
+                InStock = false,
+                ItemId = 01,
+                StoreLocation = "1350 2nd ave east",
+                Item = item
             });
+
+            foreach (var inventoryItem in inventoryItems)
+            {
+                _context.InventoryItems.Add(inventoryItem);
+            }
+
+            _context.SaveChanges();
 
             controller = new InventoryItemsController(_context);
         }
+
+        #region Index
 
         [TestMethod]
         public void IndexViewResult()
@@ -54,5 +69,34 @@ namespace Lee_Stephens_Assignment1Tests
             //arrange
             Assert.AreEqual("Index", result.ViewName);
         }
+
+        [TestMethod]
+        public void IndexGetsInventoryItems()
+        {
+            // act
+            var result = (ViewResult)controller.Index().Result;
+            List<InventoryItem> model = (List <InventoryItem>) result.Model;
+
+            //assert
+            CollectionAssert.AreEqual(inventoryItems, model);
+        }
+        #endregion
+        #region Details
+
+        [TestMethod]
+        public void DetailsNoID()
+        {
+            var result = (ViewResult)controller.Details(null).Result;
+            Assert.AreEqual("Error404", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeatilasInvalidID()
+        {
+            var result = (ViewResult)controller.Details(-1).Result;
+            Assert.AreEqual("Error404", result.ViewName);
+        }
+
+        #endregion
     }
 }

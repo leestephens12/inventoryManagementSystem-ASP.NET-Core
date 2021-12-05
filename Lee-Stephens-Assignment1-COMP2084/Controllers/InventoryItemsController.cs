@@ -32,7 +32,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("Error404");
             }
 
             var inventoryItem = await _context.InventoryItems
