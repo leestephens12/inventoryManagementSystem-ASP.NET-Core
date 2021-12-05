@@ -40,7 +40,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
                 .FirstOrDefaultAsync(m => m.InventoryItemId == id);
             if (inventoryItem == null)
             {
-                return NotFound();
+                return View("Error404");
             }
 
             return View("Details", inventoryItem);
@@ -53,7 +53,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         {
             ViewData["ItemName"] = new SelectList(_context.Items.OrderBy(c => c.ItemName), "ItemName", "ItemName");
             ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section");
-            return View();
+            return View("Create");
         }
 
         // POST: InventoryItems/Create
@@ -81,13 +81,13 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("Error404");
             }
 
             var inventoryItem = await _context.InventoryItems.FindAsync(id);
             if (inventoryItem == null)
             {
-                return NotFound();
+                return View("Error404");
             }
             ViewData["ItemName"] = new SelectList(_context.Items.OrderBy(c => c.ItemName), "ItemName", "ItemName", inventoryItem.ItemName);
             ViewData["ItemId"] = new SelectList(_context.Items.OrderBy(c => c.Section), "ItemId", "Section", inventoryItem.ItemId);
@@ -103,7 +103,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         {
             if (id != inventoryItem.InventoryItemId)
             {
-                return NotFound();
+                return View("Error404");
             }
 
             if (ModelState.IsValid)
@@ -117,7 +117,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
                 {
                     if (!InventoryItemExists(inventoryItem.InventoryItemId))
                     {
-                        return NotFound();
+                        return View("Error404");
                     }
                     else
                     {
@@ -138,7 +138,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return View("Error404");
             }
 
             var inventoryItem = await _context.InventoryItems
@@ -146,7 +146,7 @@ namespace Lee_Stephens_Assignment1_COMP2084.Controllers
                 .FirstOrDefaultAsync(m => m.InventoryItemId == id);
             if (inventoryItem == null)
             {
-                return NotFound();
+                return View("Error404");
             }
 
             return View("Delete", inventoryItem);
