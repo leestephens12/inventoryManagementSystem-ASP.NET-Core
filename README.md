@@ -6,4 +6,5 @@ I have included custom layout desgins by chaning the color scheme to the website
 Project is now updated so users can register and login in with their own email and passwords.
 Only authorized users will have access to CRUD functionality on the website meanwhile customer accounts will only have viewing rights.
 Additionally users will be able to use their google account to sign up as well.
+Program now offers unit testing for the "InventoryItemsController" Section. Mostly all of it is functional except for a couple of parts in the edit section
 Link to my azure website: https://inventorymanagmentsystem.azurewebsites.net/
